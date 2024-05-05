@@ -41,11 +41,8 @@ def src_count():
     subdomain_count = SrcSubDomain.query.count()
     SrcUrls_count = SrcUrls.query.count()
     SrcPorts_count = SrcPorts.query.count()
-    dict1 = {}
-    dict1['Vulnerabilitie_count'] = Vulnerabilitie_count
-    dict1['subdomain_count'] = subdomain_count
-    dict1['url_count'] = SrcUrls_count
-    dict1['ports_count'] = SrcPorts_count
+    dict1 = {'Vulnerabilitie_count': Vulnerabilitie_count, 'subdomain_count': subdomain_count,
+             'url_count': SrcUrls_count, 'ports_count': SrcPorts_count}
     return dict1
 
 
