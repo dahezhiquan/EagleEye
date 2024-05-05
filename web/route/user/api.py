@@ -8,6 +8,7 @@ from web.models import User, UserLoginLogs, UserLogs
 from web import DB, APP
 from web.utils.auxiliary import addlog
 
+
 class UserLogin(Resource):
     """user login类"""
 
@@ -63,6 +64,7 @@ class UserLogin(Resource):
             addlog(key_username, login_ip, '登录失败，原因:密码错误')
             return {'result': {'status_code': 201}}
 
+
 class UserSetting(Resource):
     """user 修改用户资料类"""
 
@@ -100,6 +102,7 @@ class UserSetting(Resource):
         addlog(session.get('username'), session.get('login_ip'), '修改用户资料成功')
         logger.log('INFOR', f"[{session.get('username')}]修改用户资料成功")
         return {'result': {'status_code': 200}}
+
 
 class UserPassword(Resource):
     """user 修改用户密码类"""
@@ -139,6 +142,7 @@ class UserPassword(Resource):
         logger.log('INFOR', f"[{session.get('username')}]修改用户密码成功")
         return {'result': {'status_code': 200}}
 
+
 class UserAdd(Resource):
     """user 新增用户类"""
 
@@ -168,7 +172,7 @@ class UserAdd(Resource):
             addlog(session.get('username'), session.get('login_ip'), f'新增用户[{key_username}]失败，原因:用户已存在')
             return {'result': {'status_code': 201}}
         user1 = User(username=key_username,
-                         password=key_password, name=key_xingming, phone=key_phone, email=key_email, remark=key_remark)
+                     password=key_password, name=key_xingming, phone=key_phone, email=key_email, remark=key_remark)
         DB.session.add(user1)
         try:
             DB.session.commit()
@@ -178,6 +182,7 @@ class UserAdd(Resource):
             return {'result': {'status_code': 500}}
         addlog(session.get('username'), session.get('login_ip'), f'新增用户[{key_username}]成功')
         return {'result': {'status_code': 200}}
+
 
 class UserManager(Resource):
     """user 用户管理类"""
@@ -217,7 +222,8 @@ class UserManager(Resource):
                 else:
                     paginate = User.query.filter(
                         User.username.like("%" + search_dict['username'] + "%"),
-                        User.name.like("%" + search_dict['name'] + "%")).limit(key_limit).offset((key_page - 1) * key_limit).all()
+                        User.name.like("%" + search_dict['name'] + "%")).limit(key_limit).offset(
+                        (key_page - 1) * key_limit).all()
                     jsondata = {'code': 0, 'msg': '', 'count': len(paginate)}
         data = []
         if paginate:
@@ -251,11 +257,13 @@ class UserManager(Resource):
             addlog(session.get('username'), session.get('login_ip'), f'删除用户:[{key_username}] 失败，原因:非root用户')
             return {'result': {'status_code': 203}}
         if 'root' == key_username:  # 不能删除root用户
-            addlog(session.get('username'), session.get('login_ip'), f'删除用户:[{key_username}] 失败，原因:不能删除内置用户')
+            addlog(session.get('username'), session.get('login_ip'),
+                   f'删除用户:[{key_username}] 失败，原因:不能删除内置用户')
             return {'result': {'status_code': 201}}
         user_query = User.query.filter(User.username == key_username).first()
         if not user_query:  # 删除的用户不存在
-            addlog(session.get('username'), session.get('login_ip'), f'删除用户:[{key_username}] 失败，原因:该用户不存在')
+            addlog(session.get('username'), session.get('login_ip'),
+                   f'删除用户:[{key_username}] 失败，原因:该用户不存在')
             return {'result': {'status_code': 202}}
         DB.session.delete(user_query)
         try:
@@ -265,6 +273,7 @@ class UserManager(Resource):
             return {'result': {'status_code': 500}}
         addlog(session.get('username'), session.get('login_ip'), f'删除用户:[{key_username}] 成功')
         return {'result': {'status_code': 200}}
+
 
 class UserLog(Resource):
     """user 用户操作日志类"""
@@ -326,6 +335,7 @@ class UserLog(Resource):
             jsondata = {'code': 0, 'msg': '', 'count': 0}
             jsondata.update({'data': []})
             return jsondata
+
 
 class UserLoginLog(Resource):
     """user 用户登录日志类"""
