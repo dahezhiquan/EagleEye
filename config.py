@@ -19,7 +19,7 @@ class EagleEyeConfig(object):
 '''
 class PortScan:
     cdn_scan = True  # 不扫描识别为cdn的IP
-    shodan_api = 'PoGe3os8VSAAYstNwrNgbTP58XactDbN'  # shodan查询api
+    shodan_api = ''  # shodan查询api
     async_scan = False  # 是否开启常规端口服务探测
     async_scan_timeout = 30  # 异步端口扫描超时时间
     async_scan_threads = 500  # 异步协程数
