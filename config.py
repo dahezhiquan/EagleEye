@@ -9,7 +9,7 @@ Flask项目配置
 class EagleEyeConfig(object):
     """Flask数据配置"""
     SECRET_KEY = str(uuid.uuid4())
-    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:123456@127.0.0.1/bayonet'  # 数据库连接字符串
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:1172415270@127.0.0.1/bayonet'  # 数据库连接字符串
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     TITLE = 'EagleEye 资产管理系统' # web标题
     PORT = 80  # web端口
