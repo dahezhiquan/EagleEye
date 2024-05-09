@@ -9,7 +9,7 @@ Flask项目配置
 class EagleEyeConfig(object):
     """Flask数据配置"""
     SECRET_KEY = str(uuid.uuid4())
-    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:1172415270@127.0.0.1/bayonet'  # 数据库连接字符串
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:yourpasswd@127.0.0.1/yourdatabase'  # 数据库连接字符串
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     TITLE = 'EagleEye 资产管理系统' # web标题
     PORT = 80  # web端口
@@ -19,7 +19,7 @@ class EagleEyeConfig(object):
 '''
 class PortScan:
     cdn_scan = True  # 不扫描识别为cdn的IP
-    shodan_api = ''  # shodan查询api
+    shodan_api = 'yourapikey'  # shodan查询api
     async_scan = False  # 是否开启常规端口服务探测
     async_scan_timeout = 30  # 异步端口扫描超时时间
     async_scan_threads = 500  # 异步协程数
