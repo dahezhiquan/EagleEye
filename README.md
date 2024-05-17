@@ -61,9 +61,9 @@
 28. sh EagleEye.sh
 
 项目重启步骤： &#x20;
-
-1. sh EagleEye_Stop.sh
-2. sh EagleEye.sh
+1. conda activate python
+2. sh EagleEye_Stop.sh
+3. sh EagleEye.sh
 
 设置PostgreSQL远程访问：
 
